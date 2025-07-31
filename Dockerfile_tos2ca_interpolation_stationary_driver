@@ -1,0 +1,30 @@
+FROM python:3.9
+
+RUN addgroup appgroup
+RUN adduser --disabled-password --home '/home/appuser' --ingroup appgroup appuser
+
+WORKDIR /data
+
+RUN mkdir /data/tmp/
+RUN chown -R appuser:appgroup /data/tmp
+
+USER appuser
+
+WORKDIR /data/code/
+
+COPY code .
+
+WORKDIR /data/code
+
+COPY requirements.txt .
+COPY tos2ca_interpolation_stationary_driver.py .
+
+COPY .netrc /home/appuser/.netrc
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+ENV PYTHONPATH="/data/code/anomaly-detection/src:/data/code/fortracc-module"
+RUN echo $PYTHONPATH
+
+ENTRYPOINT ["python", "tos2ca_interpolation_stationary_driver.py"]
