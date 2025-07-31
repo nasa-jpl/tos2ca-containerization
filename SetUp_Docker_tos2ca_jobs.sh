@@ -6,10 +6,12 @@ mkdir $HOME/docker_executable
 mkdir $HOME/docker_executable/code
 
 # Copy over build files
-cp -p /data/code/containerization/tos2ca_*_driver.py   $HOME/docker_executable/
-cp -p /data/code/containerization/Dockerfile*          $HOME/docker_executable/
-cp -p /data/code/containerization/requirements.txt     $HOME/docker_executable/
-cp -p ~/.netrc                                         $HOME/docker_executable/
+# the containerization repo is the clone of this repository
+# this assumes your NASA Earthdata .netrc file is in $HOME
+cp -p $HOME/containerization/tos2ca_*_driver.py   $HOME/docker_executable/
+cp -p $HOME/containerization/Dockerfile*          $HOME/docker_executable/
+cp -p $HOME/containerization/requirements.txt     $HOME/docker_executable/
+cp -p $HOME/.netrc                                $HOME/docker_executable/
 chmod a+r $HOME/docker_executable/.netrc
 
 # Grab copies of the necessary repos; you can grab a specific branch with the '-b' option if needed
