@@ -17,7 +17,7 @@ chmod a+r $HOME/docker_executable/.netrc
 # Grab copies of the necessary repos; you can grab a specific branch with the '-b' option if needed
 git clone git@github.com:nasa-jpl/tos2ca-anomaly-detection.git                    $HOME/docker_executable/code/anomaly-detection
 git clone git@github.com:nasa-jpl/tos2ca-data-dictionaries.git                    $HOME/docker_executable/code/data-dictionaries
-git clone git@github.fortracc-module:TOS2CA/fortracc-module.git                   $HOME/docker_executable/code/fortracc-module                       
+git clone git@github.com:nasa-jpl/tos2ca-fortracc-module.git                      $HOME/docker_executable/code/fortracc-module                       
 
 ### Here's some suggested ways to build the Docker image and push them to an AWS ECR
 ## Building Images
