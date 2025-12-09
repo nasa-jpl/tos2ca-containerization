@@ -24,7 +24,7 @@ COPY .netrc /home/appuser/.netrc
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-ENV PYTHONPATH="/data/code/anomaly-detection/src:/data/code/fortracc-module"
+ENV PYTHONPATH="/data/code/anomaly-detection/src:/data/code/fortracc-module:/data/code/aux-geoir"
 RUN echo $PYTHONPATH
 
 ENTRYPOINT ["python", "tos2ca_interpolation_stationary_driver.py"]
