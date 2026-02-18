@@ -9,14 +9,13 @@ git clone https://github.com/nasa-jpl/tos2ca-containerization.git   $REPO_DIR
 # First remove all existing git directories from the directory so we get a clean copy
 rm -rf $HOME/docker_executable
 mkdir $HOME/docker_executable
-mkdir $HOME/docker_executable/code
 
 # Copy over build files
 # the containerization repo is the clone of this repository
 # this assumes your NASA Earthdata .netrc file is in $HOME
-cp -p $REPO_DIR/containerization/tos2ca_*_driver.py   $HOME/docker_executable/
-cp -p $REPO_DIR/containerization/Dockerfile*          $HOME/docker_executable/
-cp -p $REPO_DIR/containerization/requirements.txt     $HOME/docker_executable/
+cp -p $REPO_DIR/tos2ca_*_driver.py                    $HOME/docker_executable/
+cp -p $REPO_DIR/Dockerfile*                           $HOME/docker_executable/
+cp -p $REPO_DIR/requirements.txt                      $HOME/docker_executable/
 cp -p $HOME/.netrc                                    $HOME/docker_executable/
 chmod a+r $HOME/docker_executable/.netrc
 
