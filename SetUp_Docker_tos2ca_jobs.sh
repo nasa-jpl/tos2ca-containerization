@@ -4,7 +4,7 @@
 # $HOME should be your user's home directory on your system
 # $REPO_DIR should be the directory where you have cloned this repository
 
-git clone git@github.com:nasa-jpl/tos2ca-containerization.git   $REPO_DIR
+git clone https://github.com/nasa-jpl/tos2ca-containerization.git   $REPO_DIR
 
 # First remove all existing git directories from the directory so we get a clean copy
 rm -rf $HOME/docker_executable
