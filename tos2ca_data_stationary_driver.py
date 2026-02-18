@@ -1,7 +1,7 @@
 import os
 import json
-from database.connection import openDB, closeDB
-from database.queries import getJobInfo, updateStatus
+from tos2ca.database.connection import openDB, closeDB
+from tos2ca.database.queries import getJobInfo, updateStatus
 
 def tos2ca_data_stationary_driver(jobID, chunkID):
         
@@ -19,10 +19,10 @@ def tos2ca_data_stationary_driver(jobID, chunkID):
     print("Running curation: %s-%s using: %s_stationary" % (jobID, chunkID, curator))
 
     if curator == "gpm_curator":
-        from iolib.gpm import gpm_curator_stationary
+        from tos2ca.iolib.gpm import gpm_curator_stationary
         gpm_curator_stationary(jobID, chunkID)
     elif curator == "merra2_curator":
-        from iolib.merra2 import merra2_curator_stationary
+        from tos2ca.iolib.merra2 import merra2_curator_stationary
         merra2_curator_stationary(jobID, chunkID)
     else:
         updateStatus(db, cur, jobID, 'failed', chunkID=chunkID)

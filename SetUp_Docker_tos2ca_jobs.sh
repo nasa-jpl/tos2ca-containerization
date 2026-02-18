@@ -4,7 +4,7 @@
 # $HOME should be your user's home directory on your system
 # $REPO_DIR should be the directory where you have cloned this repository
 
-git clone git@github.com:nasa-jpl/tos2ca-containerization.git                  $REPO_DIR
+git clone git@github.com:nasa-jpl/tos2ca-containerization.git   $REPO_DIR
 
 # First remove all existing git directories from the directory so we get a clean copy
 rm -rf $HOME/docker_executable
@@ -20,12 +20,6 @@ cp -p $REPO_DIR/containerization/requirements.txt     $HOME/docker_executable/
 cp -p $HOME/.netrc                                    $HOME/docker_executable/
 chmod a+r $HOME/docker_executable/.netrc
 
-# Grab copies of the necessary repos; you can grab a specific branch with the '-b' option if needed
-git clone git@github.com:nasa-jpl/tos2ca-anomaly-detection.git                  $HOME/docker_executable/code/anomaly-detection
-git clone git@github.com:nasa-jpl/tos2ca-data-dictionaries.git                  $HOME/docker_executable/code/data-dictionaries
-git clone git@github.com:nasa-jpl/fortracc-module.git                           $HOME/docker_executable/code/fortracc-module                       
-git clone git@github.com:nasa-jpl/aux-geoir.git                                 $HOME/docker_executable/code/aux-geoir
-
 ### Here's some suggested ways to build the Docker image and push them to an AWS ECR
 ## Building Images
 # docker build -t data_driver . -f Dockerfile_tos2ca_data_driver
@@ -40,10 +34,13 @@ git clone git@github.com:nasa-jpl/aux-geoir.git                                 
 # aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <AWS URI>
 # docker push <AWS URI>/<repo name>:<tag>
 
-## Run Containers 
+## Run Containers Locally
 # docker run --rm -it -e JOBID=<jobID> -e CHUNKID=<chunkID> data_driver
 ## List containers
 # docker ps -a
 ## Removing Containers (if you didn't use --rm above)
 # docker rm <container ID>
+
+## You can also run these containers in AWS ECS, which is recommended, but you'll
+## need to do some setup on your own for that.
 

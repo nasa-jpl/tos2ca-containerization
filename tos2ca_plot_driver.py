@@ -1,5 +1,5 @@
 import os
-from utils.plot import mask_plot
+from tos2ca.utils.plot import mask_plot
 
 def plot_driver(jobID, chunkID):
 

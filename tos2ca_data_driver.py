@@ -1,7 +1,7 @@
 import os
 import json
-from database.connection import openDB, closeDB
-from database.queries import getJobInfo, updateStatus
+from tos2ca.database.connection import openDB, closeDB
+from tos2ca.database.queries import getJobInfo, updateStatus
 
 def tos2ca_data_driver(jobID, chunkID):
         
@@ -23,16 +23,16 @@ def tos2ca_data_driver(jobID, chunkID):
             print('ASCAT data cannot currently be run in a container')
             updateStatus(db, cur, jobID, 'failed', chunkID=chunkID)
         elif curator == "ecco_curator":
-            from iolib.ecco import ecco_curator
+            from tos2ca.iolib.ecco import ecco_curator
             ecco_curator(jobID, chunkID)
         elif curator == "gpm_curator":
-            from iolib.gpm import gpm_curator
+            from tos2ca.iolib.gpm import gpm_curator
             gpm_curator(jobID, chunkID)
         elif curator == "merra2_curator":
-            from iolib.merra2 import merra2_curator
+            from tos2ca.iolib.merra2 import merra2_curator
             merra2_curator(jobID, chunkID)
         elif curator == "oscar_curator":
-            from iolib.oscar import oscar_curator
+            from tos2ca.iolib.oscar import oscar_curator
             oscar_curator(jobID, chunkID)
         else:
             updateStatus(db, cur, jobID, 'failed', chunkID=chunkID)
@@ -46,22 +46,22 @@ def tos2ca_data_driver(jobID, chunkID):
         print("Running phdef: %s-%s using: %s" % (jobID, chunkID, reader))
         
         if reader == 'merra2_reader':
-            from iolib.merra2 import merra2_reader
+            from tos2ca.iolib.merra2 import merra2_reader
             merra2_reader(jobID, chunkID)
         elif reader == 'gpm_reader':
-            from iolib.gpm import gpm_reader
+            from tos2ca.iolib.gpm import gpm_reader
             gpm_reader(jobID, chunkID)
         elif reader == 'ecco_reader':
-            from iolib.ecco import ecco_reader
+            from tos2ca.iolib.ecco import ecco_reader
             ecco_reader(jobID, chunkID)
         elif reader == 'mur_reader':
-            from iolib.mur import mur_reader
+            from tos2ca.iolib.mur import mur_reader
             mur_reader(jobID, chunkID)
         elif reader == 'sea_surface_reader':
-            from iolib.sea_surface import sea_surface_reader
+            from tos2ca.iolib.sea_surface import sea_surface_reader
             sea_surface_reader(jobID, chunkID)
         elif reader == 'oisss_reader':
-            from iolib.oisss import oisss_reader
+            from tos2ca.iolib.oisss import oisss_reader
             oisss_reader(jobID, chunkID)
         else:
             updateStatus(db, cur, jobID, 'failed', chunkID=chunkID)
@@ -75,4 +75,4 @@ def tos2ca_data_driver(jobID, chunkID):
 
 if __name__ == '__main__':
 
-    tos2ca_data_driver(os.environ['JOBID'], os.environ['CHUNKID'])    
+    tos2ca_data_driver(os.environ['JOBID'], os.environ['CHUNKID'])
