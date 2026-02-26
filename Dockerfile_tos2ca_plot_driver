@@ -21,8 +21,8 @@ COPY .netrc /home/appuser/.netrc
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN pip install git+https://github.com/nasa-jpl/tos2ca-anomaly-detection.git@dev --no-cache-dir
-RUN pip install git+https://github.com/nasa-jpl/tos2ca-aux-geoir.git@dev --no-cache-dir
-RUN pip install git+https://github.com/nasa-jpl/tos2ca-fortracc-module.git@dev --no-cache-dir
+RUN pip install git+https://github.com/nasa-jpl/tos2ca-anomaly-detection.git --no-cache-dir
+RUN pip install git+https://github.com/nasa-jpl/tos2ca-aux-geoir.git --no-cache-dir
+RUN pip install git+https://github.com/nasa-jpl/tos2ca-fortracc-module.git --no-cache-dir
 
 ENTRYPOINT ["python", "tos2ca_plot_driver.py"]
