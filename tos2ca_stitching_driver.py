@@ -1,6 +1,6 @@
 import os
-from utils.ncTools import combineCuratedFiles, combineInterpolatedFiles
-from database.connection import openDB, closeDB
+from tos2ca.utils.ncTools import combineCuratedFiles, combineInterpolatedFiles
+from tos2ca.database.connection import openDB, closeDB
 
 
 def combine_driver(jobID):
@@ -12,10 +12,10 @@ def combine_driver(jobID):
     stage = results['stage']
     status = results['status']
     if stage == 'phdef' and status == 'fortracc':
-        from utils.fortracc import stitchFortracc
+        from tos2ca.utils.fortracc import stitchFortracc
         stitchFortracc(jobID)
     elif stage == 'phdef' and status == 'auxgeoir':
-        from utils.auxgeoir import stitchAuxGeoIR
+        from tos2ca.utils.auxgeoir import stitchAuxGeoIR
         stitchAuxGeoIR(jobID)
     elif stage == 'curation' and status == 'complete':
         #combineCuratedFiles(jobID)

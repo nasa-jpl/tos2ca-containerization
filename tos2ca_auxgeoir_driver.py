@@ -1,5 +1,5 @@
 import os
-from utils.auxgeoir import callAuxGeoIRSparse
+from tos2ca.utils.auxgeoir import callAuxGeoIRSparse
 
 def auxgeoir_driver(jobID, chunkID):
 

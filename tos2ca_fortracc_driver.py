@@ -1,5 +1,5 @@
 import os
-from utils.fortracc import callFortraccSparse
+from tos2ca.utils.fortracc import callFortraccSparse
 
 def fortracc_driver(jobID, chunkID):
 

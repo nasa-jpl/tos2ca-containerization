@@ -1,5 +1,5 @@
 import os
-from utils.interpolation import interpolator
+from tos2ca.utils.interpolation import interpolator
 
 def interpolation_driver(jobID, chunkID):
 
