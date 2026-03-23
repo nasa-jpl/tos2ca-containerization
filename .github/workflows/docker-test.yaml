@@ -1,30 +1,55 @@
-build-test:
-    needs: setup
+name: Test Multiple Docker Builds
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docker-test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        dockerfile: ${{ fromJson(needs.setup.outputs.dockerfiles) }}
-    
+        include:
+          - image_name: data-driver
+            dockerfile: ./Dockerfile_tos2ca_data_driver
+            context: ./
+          - image_name: fortracc-driver
+            dockerfile: ./Dockerfile_tos2ca_fortracc_driver
+            context: ./
+          - image_name: auxgeoir-driver
+            dockerfile: ./Dockerfile_tos2ca_auxgeoir_driver
+            context: ./
+          - image_name: interpolation-driver
+            dockerfile: ./Dockerfile_tos2ca_interpolation_driver
+            context: ./
+          - image_name: plot-driver
+            dockerfile: ./Dockerfile_tos2ca_plot_driver
+            context: ./
+          - image_name: stitching-driver
+            dockerfile: ./Dockerfile_tos2ca_stitching_driver
+            context: ./
+          - image_name: data-driver-stationary
+            dockerfile: ./Dockerfile_tos2ca_data_stationary_driver
+            context: ./
+          - image_name: interpolation-driver-stationary
+            dockerfile: ./Dockerfile_tos2ca_interpolation_stationary_driver
+            context: ./
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Prepare Docker Tag
-        id: prep
-        run: |
-          # Convert to lowercase and replace underscores with dashes for cleaner naming
-          # This takes "Dockerfile_TOS2CA_Plot_Driver" and makes it "tos2ca-plot-driver"
-          CLEAN_NAME=$(echo "${{ matrix.dockerfile }}" | tr '[:upper:]' '[:lower:]' | sed 's/dockerfile_//g' | sed 's/_/-/g')
-          echo "tag=$CLEAN_NAME" >> $GITHUB_OUTPUT
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build ${{ matrix.dockerfile }}
+      - name: Build ${{ matrix.image_name }}
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./${{ matrix.dockerfile }}
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
           push: false
-          tags: tos2ca-${{ steps.prep.outputs.tag }}:test
+          # Tags help identify the image in the build logs
+          tags: ${{ matrix.image_name }}:test
