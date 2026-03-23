@@ -1,24 +1,4 @@
-name: Build Images
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      dockerfiles: ${{ steps.set-matrix.outputs.files }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: set-matrix
-        run: |
-          FILES=$(ls Dockerfile_* | jq -R -s -c 'split("\n")[:-1]')
-          echo "files=$FILES" >> $GITHUB_OUTPUT
-
-  build-test:
+build-test:
     needs: setup
     runs-on: ubuntu-latest
     strategy:
@@ -30,6 +10,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Prepare Docker Tag
+        id: prep
+        run: |
+          # Convert to lowercase and replace underscores with dashes for cleaner naming
+          # This takes "Dockerfile_TOS2CA_Plot_Driver" and makes it "tos2ca-plot-driver"
+          CLEAN_NAME=$(echo "${{ matrix.dockerfile }}" | tr '[:upper:]' '[:lower:]' | sed 's/dockerfile_//g' | sed 's/_/-/g')
+          echo "tag=$CLEAN_NAME" >> $GITHUB_OUTPUT
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -39,4 +27,4 @@ jobs:
           context: .
           file: ./${{ matrix.dockerfile }}
           push: false
-          tags: tos2ca-${{ matrix.dockerfile }}:test
+          tags: tos2ca-${{ steps.prep.outputs.tag }}:test
