@@ -4,7 +4,7 @@
 
 [![Language](https://img.shields.io/badge/python-3.9-blue)](#) [![Language](https://img.shields.io/badge/Docker-27-blue)](#)
 
-[![Build Check](https://github.com/nasa-jpl/tos2ca-anomaly-detection/actions/workflows/docker-test.yaml/badge.svg)](https://github.com/nasa-jpl/tos2ca-anomaly-detection/actions/workflows/docker-test.yaml)
+[![Build Check](https://github.com/nasa-jpl/tos2ca-containerization/actions/workflows/docker-test.yaml/badge.svg)](https://github.com/nasa-jpl/tos2ca-containerization/actions/workflows/docker-test.yaml)
 
 The `containerization` library is part of the of the TOS2CA Project.  For more information, visit the TOS2CA website at [https://nasa-jpl.github.io/tos2ca-documentation/](https://nasa-jpl.github.io/tos2ca-documentation/).  
 
