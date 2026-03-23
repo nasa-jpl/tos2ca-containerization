@@ -4,7 +4,7 @@
 
 [![Language](https://img.shields.io/badge/python-3.9-blue)](#) [![Language](https://img.shields.io/badge/Docker-27-blue)](#)
 
-[![Docker Build Test](https://github.com/nasa-jpl/tos2ca-containerization/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/nasa-jpl/tos2ca-containerization/actions/workflows/YOUR_WORKFLOW_FILENAME.yml)
+[![Build Check](https://github.com/nasa-jpl/tos2ca-anomaly-detection/actions/workflows/docker-test.yaml/badge.svg)](https://github.com/nasa-jpl/tos2ca-anomaly-detection/actions/workflows/docker-test.yaml)
 
 The `containerization` library is part of the of the TOS2CA Project.  For more information, visit the TOS2CA website at [https://nasa-jpl.github.io/tos2ca-documentation/](https://nasa-jpl.github.io/tos2ca-documentation/).  
 
@@ -33,3 +33,9 @@ The next steps are all in the script `SetUp_Docker_tos2ca_jobs.sh` if you choose
 5. Optionally, you can also then push the image to a repository, like AWS ECR:
     - `aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <AWS URI>`
     - `docker push <AWS URI>/<repo name>:<tag>`
+
+## Notes
+
+We chose not to publish these images because they require user credentials in the `.netrc` file.  Once
+you have your NASA Earthdata credentials, you should be able to use them in that file and then
+build the images yourself.
