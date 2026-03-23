@@ -4,6 +4,8 @@
 
 [![Language](https://img.shields.io/badge/python-3.9-blue)](#) [![Language](https://img.shields.io/badge/Docker-27-blue)](#)
 
+[![Docker Build Test](https://github.com/nasa-jpl/tos2ca-containerization/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/nasa-jpl/tos2ca-containerization/actions/workflows/YOUR_WORKFLOW_FILENAME.yml)
+
 The `containerization` library is part of the of the TOS2CA Project.  For more information, visit the TOS2CA website at [https://nasa-jpl.github.io/tos2ca-documentation/](https://nasa-jpl.github.io/tos2ca-documentation/).  
 
 This python library contains examples of how build images with the [TOS2CA Anomaly Detection](https://github.com/nasa-jpl/tos2ca-anomaly-detection) repo.  The project uses this with AWS Fargate services, though it could be run locally on a single server if needed.
