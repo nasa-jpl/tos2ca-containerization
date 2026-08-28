@@ -1,6 +1,6 @@
 # Containerization 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17664955.svg)](https://doi.org/10.5281/zenodo.17664955)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22149467.svg)](https://doi.org/10.5281/zenodo.22149467)
 
 [![Language](https://img.shields.io/badge/python-3.9-blue)](#) [![Language](https://img.shields.io/badge/Docker-27-blue)](#)
 
@@ -27,7 +27,7 @@ The next steps are all in the script `SetUp_Docker_tos2ca_jobs.sh` if you choose
 3. Once an image is built, a container can be run like:
     - Example:
     `docker run -it -e JOBID=469 -e CHUNKID=1 data_driver`
-    - Note that each container will have enviornmental variables that you will need to pass to it. 
+    - Note that each container will have environmental variables that you will need to pass to it. 
 4. Optionally, you can then tag image:
     - `docker tag <image ID> <AWS URI>/<repo name>:<tag>`
 5. Optionally, you can also then push the image to a repository, like AWS ECR:
