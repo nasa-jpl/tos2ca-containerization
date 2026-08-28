@@ -74,7 +74,7 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.22149467
     description: >-
-      Link to an archived copy of the TOS2CA v2.1 software on
+      Link to an archived copy of the TOS2CA v2.2 software on
       Zenodo
 repository-code: 'https://github.com/nasa-jpl/tos2ca-documentation'
 url: 'https://nasa-jpl.github.io/tos2ca-documentation/'
@@ -91,7 +91,7 @@ abstract: >-
   truly innovative missions and research investigations.
 license: Apache-2.0
 version: v2.2
-date-released: '2026-08-26'
+date-released: '2026-08-28'
 preferred-citation:
   authors:
     - family-names: Haddad
